@@ -1,0 +1,10 @@
+{
+    "employee" : [
+        {"id": 1, "price": 100},
+        {"id": 2, "price": 200}
+    ],
+    "bonus" : [
+        {"id": 1, "point": 1},
+        {"id": 2, "point": 2}
+    ]
+}
