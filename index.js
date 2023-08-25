@@ -10,7 +10,7 @@ const employeeReducer = (state = initialState, action) => {
     return state + action.payload;
   }
   if (action.type === "INCREMENT") {
-    return state + 1;
+    return state + action.payload;
   }
   if (action.type === "DECREMENT") {
     return state - 1;
@@ -22,16 +22,18 @@ const employeeReducer = (state = initialState, action) => {
   return state;
 };
 
+// *** Bonus Reducer *** //
 const bonusState = 10;
 const bonusReducer = (state = bonusState, action) => {
   if (action.type === "INCREMENT") {
-    return state + 1;
+    return state + action.payload;
   }
   return state;
 };
 
 // *** create store *** //
-const store = createStore(combineReducers({employeeReducer,bonusReducer}),
+const store = createStore(
+  combineReducers({ employeeReducer, bonusReducer }),
   applyMiddleware(logger.default, thunk.default)
 );
 
@@ -48,8 +50,8 @@ const getData = (id) => {
 const init = (value) => {
   return { type: "INIT", payload: value };
 };
-const increment = () => {
-  return { type: "INCREMENT" };
+const increment = (value) => {
+  return { type: "INCREMENT", payload: value };
 };
 const decrement = () => {
   return { type: "DECREMENT" };
@@ -61,7 +63,7 @@ const incrementByAmount = (num) => {
 //  *** useDispatch  *** //
 // store.dispatch(getData(2));
 // store.dispatch(incrementByAmount(4));
-store.dispatch(increment());
+store.dispatch(increment(1));
 // store.dispatch(decrement());
 
 console.log(store.getState());
